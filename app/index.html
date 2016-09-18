@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>F8</title>
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+
+</head>
+<body>
+
+  <main>
+    <section class="section__wrapper section__app-list" id="app">
+      <header class="section__header">
+        <h1>Top Vue.js Repos in the last week </h1>
+        <p>This apps polls the <a href="https://developer.github.com/v3/search/#search-repositories">Github Search API</a> to find the most starred Vue.js projects created in the past week. Turns out, there were {{totalReposFound}} of them.</p>
+      </header>
+      <div class="app-list__wrapper">
+        <listing :repos-in-page="reposInPage"></listing>
+        <pagination :page.sync="page" :total-pages="totalPages"></pagination>
+      </div>
+    </div>
+  </main>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <script type="text/x-template" id="listing-template">
+      <ul class="app-list__list">
+        <li v-for="repo in reposInPage" class="app-list__list-item">
+          <a :href="repo.html_url" target="_blank" class="list-item__item-title">{{repo.ranking}} : {{repo.name}}</a>
+          <span class="list-item__item-description">{{repo.description | truncate 140}}</span>
+          <address class="list-item__item-author">
+            by <a :href="repo.owner.html_url" class="item-author__link" rel="author"><span class="author">{{repo.owner.login}}</span></a>
+            on <span class="date">{{repo.created_at | timestamp}}</span>
+          </address>
+        </li>
+      </ul>
+    </script>
+
+    <script type="text/x-template" id="pagination-template">
+      <div class="pagination__wrapper">
+        <button v-on:click="decrement" class="pagination__directional-button">◀</button>
+        <span class="pagination__page-count">Page {{page}} of {{totalPages}}</span>
+        <button v-on:click="increment" class="pagination__directional-button">▶</button>
+      </div>
+    </script>
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
+  </html>

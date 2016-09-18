@@ -1,0 +1,152 @@
+@import "tools/bourbon/bourbon";
+@import "tools/neat/neat";
+@import "tools/base/base";
+
+body {
+  background: #22292f;
+  margin: 0;
+}
+
+main {
+  @include outer-container();
+  height: 100%;
+
+  @include media($large-screen) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+
+.section__wrapper {
+  $base-border-radius: 3px !default;
+  $action-color: #477DCA !default;
+  $large-screen: 53.75em !default;
+  $device-padding-vertical: 5em;
+  $device-padding-horizontal: 0.4em;
+  $device-screen-width: 20em;
+  $device-screen-height: 22em;
+  $device-background: darken(gray, 40%);
+  $device-backside-background: darken($device-background, 10%);
+  $device-text-color: white;
+  $device-background-top: #35495e;
+  $device-background-bottom: #4fc08d;
+  $gradient-angle: 10deg;
+  $device-image: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png";
+  $device-screen-image: "https://s3-us-west-1.amazonaws.com/patreon.user/xCBz2K6h8VdpvJKffFgr6QXs6aJZZPMbMorh6EOcyReM4HQrOIIKRqa19aIyDGcY_normal_2.png";
+
+  background: url($device-image),
+              linear-gradient($gradient-angle, $device-background-bottom, $device-background-top),
+              no-repeat $device-background-top scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 20em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  height: 100%;
+  justify-content: flex-start;
+  position: relative;
+  overflow-x: hidden;
+
+  @include media($large-screen) {
+    justify-content: space-between;
+    flex: 0 1 90%;
+
+    &:after {
+      content: '';
+      background: url($device-screen-image) 50% 50% / contain no-repeat;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      right: -50%;
+    }
+  }
+
+  .section__header {
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    margin-bottom: 1em;
+
+    @include media($large-screen) {
+      max-width: 50%;
+    }
+
+    h1 {
+      color: $device-text-color;
+      font-weight: 200;
+      font-size: 1.5em;
+      margin: 0 0 0.5em 0;
+      padding-bottom: 0.5em;
+    }
+
+    p {
+      color: $device-text-color;
+      line-height: 1.5em;
+      margin-bottom: 1.5em;
+
+      a {
+        color: #F0A830;
+      }
+    }
+  }
+
+  .app-list__wrapper {
+    color: $device-text-color;
+
+    @include media($large-screen) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+
+  }
+
+  .app-list__list {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 85%;
+  }
+
+  .app-list__list-item + .app-list__list-item {
+    margin-top: 1em;
+  }
+
+  .list-item__item-description {
+    display: block;
+  }
+
+  .list-item__item-title {
+    color: #F0A830;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .list-item__item-author {
+    font-size: 0.8em;
+    font-style: normal;
+  }
+
+  .item-author__link {
+    color: #FCEBB6;
+  }
+}
+
+.pagination__wrapper {
+  margin-top: 2em;
+}
+
+.pagination__directional-button {
+  border-radius: 0;
+  background: #F0A830;
+  color: #22292f;
+}
+
+.pagination__page-count {
+  display: inline-block;
+  text-align: center;
+  min-width: 120px;
+}
