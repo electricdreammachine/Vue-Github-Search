@@ -167,5 +167,5 @@ function getLastWeek() {
 
   var lastWeek = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
 
-  return lastWeek.toISOString()
+  return lastWeek.toISOString().split('T')[0]
 }
